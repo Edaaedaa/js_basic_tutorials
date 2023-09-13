@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slide on scroll</title>
+
+</head>
+<body>
+
+<div class="site-wrap">
+
+    <h1>
+        Slide in on Scroll
+    </h1>
+</div>
+
+
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel metus scelerisque, mollis lectus id,
+    mollis enim. Suspendisse potenti. Cras laoreet eget erat vel porta. Proin a justo iaculis, suscipit mi quis,
+    blandit risus. Donec vulputate, elit at tincidunt vestibulum, leo lorem lobortis enim, sed feugiat felis ante
+    iaculis elit. Donec ac magna et purus blandit blandit id bibendum risus. Sed volutpat magna ac mauris gravida,
+    sodales molestie massa condimentum.
+    <img src="images/another scenerey.png" class="align-right slide-in"/>
+    Ut gravida semper arcu, at mollis libero finibus at.
+    Donec posuere mi nunc, a sagittis purus feugiat ut. In hac habitasse platea dictumst. Proin iaculis, nisi
+    tincidunt bibendum tincidunt, magna lacus rhoncus justo, eget cursus lectus ipsum in neque. Aenean dignissim
+    fringilla tellus, in pellentesque erat posuere vel. Donec vel turpis pellentesque, maximus mauris non, tempor eros.
+    Sed vitae rutrum urna, quis commodo libero. Proin euismod, lectus sed maximus lacinia, mi tellus tempor sapien, a
+    luctus mauris dolor ut massa. Curabitur sed eleifend sapien.
+    Sed commodo fringilla consequat. Duis porttitor auctor neque vitae pellentesque. Duis tincidunt mi id mi
+    consectetur, eu facilisis libero sollicitudin. Cras sit amet leo eros. Nulla hendrerit aliquam sapien at fringilla.
+    Fusce vitae purus ac neque bibendum pharetra vitae eget est. Suspendisse eu tincidunt ante. Vivamus convallis erat
+    vitae diam venenatis eleifend. Donec eleifend ante id ante porta, vitae viverra diam vestibulum. Mauris
+    sollicitudin magna nec velit molestie, at rutrum elit tristique. Phasellus vel finibus lectus. Donec id
+    accumsan diam.
+</p>
+
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel metus scelerisque, mollis lectus id,
+    mollis enim. Suspendisse potenti. Cras laoreet eget erat vel porta. Proin a justo iaculis, suscipit mi quis,
+    blandit risus. Donec vulputate, elit at tincidunt vestibulum, leo lorem lobortis enim, sed feugiat felis ante
+    iaculis elit. Donec ac magna et purus blandit blandit id bibendum risus. Sed volutpat magna ac mauris gravida,
+    sodales molestie massa condimentum.
+
+    <img src="images/holiday view.png" class="align-right slide-in"/>
+    </p>
+
+
+<script>
+    function debounce (func, wait=20, immeadiate = true) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immeadiate) func.apply(context, args);
+            };
+            var callNow = immeadiate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
+   const sliderImages = document.querySelectorAll(`.slide-in`);
+
+   function checkSlide(e) {
+       sliderImages.forEach(slideImage => {
+           const slideInAt = (window.scrollY + window.innerHeight) -
+           sliderImage.height / 2;
+
+           const imageBottom = sliderImage.offsetTop + sliderImage.height;
+           const isHalfShown = slideInAt > sliderImage.offsetTop;
+           const isNotScrolledPast = window.scrollY < imageBottom;
+           if (isHalfShown && isNotScrolledPast) {
+               sliderImage.classList.add(`active`);
+           } else {
+               sliderImage.classList.remove(`active`);
+           }
+       });
+   }
+
+   window.addEventListener(`scroll`, debounce(checkSlide));
+
+
+
+</script>
+
+    <style>
+      html {
+      box-sizing: border-box;
+      background: pink;
+      font-family: serif;
+      font-size: 20px;
+      font-weight: 200;
+     }
+
+body{
+    margin: 0;
+}
+
+*,*:before, *:after{
+    box-sizing: inherit;
+}
+
+h1{
+    margin-top: 0;
+}
+
+.site-wrap{
+    max-width: 700px;
+    margin: 100px auto;
+    background: white;
+    padding: 40px;
+    text-align: justify;
+}
+
+.align-left {
+    float: left;
+    margin-right: 20px;
+}
+
+.align-right{
+    float: right;
+    margin-left: 20px;
+}
+
+.slide-in{
+    opacity: 0;
+    transition: all .5s;
+}
+
+
+.align-left.slide-in{
+    transform: translateX(-30%) scale(0.95);
+}
+
+.align-right.slide-in{
+    transform: translateX(30%) scale(0.95);
+
+}
+
+.slide-in.active{
+    opacity: 1;
+    transform: translateX(0%) scale(1);
+}
+
+</style>
+</body>
+</html>
