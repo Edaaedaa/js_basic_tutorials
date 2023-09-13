@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>multiple checkboxes</title>
+</head>
+<body>
+
+    <div class="inbox">
+    <div class="item">
+        <input type="checkbox">
+        <p>this is an inbox layout</p>
+    </div>
+
+    <div class="item">
+        <input type="checkbox">
+        <p>check one item</p>
+    </div>
+
+    <div class="item">
+       <input type="checkbox">
+        <p>hold down your shift key</p>
+    </div>
+
+        <div class="item">
+            <input type="checkbox">
+            <p>check a lower item</p>
+        </div>
+
+
+        <div class="item">
+            <input type="checkbox">
+            <p>everything in between should also be set to checked</p>
+        </div>
+
+        <div class="item">
+            <input type="checkbox">
+            <p>try do it without any libraries</p>
+        </div>
+
+
+        <div class="item">
+            <input type="checkbox">
+            <p>just regular javascript</p>
+        </div>
+
+
+        <div class="item">
+            <input type="checkbox">
+            <p>good luck!</p>
+        </div>
+
+        <div class="item">
+            <input type="checkbox">
+            <p>don´t forget to tweet your result!</p>
+        </div>
+</div>
+
+
+<script>
+
+const checkboxes = document.querySelectorAll(`.inbox input[type="checkbox"]`);
+
+let lastckecked;
+
+function handleCheck(e) {
+    //check if they had the check key down
+
+    let inBetween = false;
+    if(e.shiftKey && this.checked) {
+        //go ahead and do what we please
+        //lopp over every single checkbox
+        checkbox.forEach(checkbox => {
+            console.log (checkbox);
+            if (checkbox === this ,, checkbox === lastckecked ) {
+                inBetween = !inBetween;
+                console.log ("starting to check inbetween");
+            }
+
+        if (inBetween){
+            checkbox.checked = true;
+        }
+
+        });
+    }
+    lastckecked= this;
+}
+
+
+
+</script>
+
+</body>
+</html>
